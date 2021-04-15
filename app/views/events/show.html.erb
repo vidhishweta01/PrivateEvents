@@ -4,17 +4,17 @@
 
 <div class="row mb-4">
   <div class="col">
-    <h1><%= @event.title.titleize %></h1>
+    <h1 class="text-light"><%= @event.title.titleize %></h1>
   </div>
   <div class="col text-right">
     <% if current_user == @event.creator %>
-      <%= link_to 'Edit', edit_event_path, class: "btn btn-outline-secondary" %>
-      <%= link_to 'Delete', event_path, method: :delete, class: "btn btn-outline-secondary",
+      <%= link_to 'Edit', edit_event_path, class: "btn btn-outline-primary text-light" %>
+      <%= link_to 'Delete', event_path, method: :delete, class: "btn btn-outline-primary text-light",
                             data: { confirm: "Delete this event?"} %>
     <% elsif @event.attendees.include?(current_user) %>
-      <%= link_to 'Cancel Invite', cancel_invite_event_path, class: "btn btn-outline-secondary" %>
+      <%= link_to 'Cancel Invite', cancel_invite_event_path, class: "btn btn-outline-primary text-light" %>
     <% else %>
-      <%= link_to 'Invite', invite_event_path, class: "btn btn-primary" unless @event.date_time < Time.now %>
+      <%= link_to 'Invite', invite_event_path, class: "btn btn-primary text-light" unless @event.date_time < Time.now %>
     <% end %>
   </div>
 </div>
@@ -27,7 +27,7 @@
         <div class="col-md-8">
           <div class="card-body">
 
-            <p class="card-text text-muted"> <%= @event.description %> </p>
+            <p class="card-text text-Dark ml-3"> <%= @event.description %> </p>
           </div>
         </div>
 
@@ -38,11 +38,12 @@
                 Created by <%= link_to @event.creator.name, user_path(@event.creator) %>
             </p>
             <p class="text-muted">
-              <i class="far fa-calendar-alt text-dark fa-lg mr-1"></i>
+              <i class="glyphicon glyphicon-calendar"></i>
               <%= @event.date_time.strftime("%B %-d, %Y at %l:%M %p") %>
             </p>
             <p class="text-muted">
-              <i class="fas fa-map-marker-alt text-dark fa-lg mr-1"></i> <%= @event.location %>
+            <i class="fas fa-map-marker-alt"></i>
+              <%= @event.location %>
             </p>
           </div>
         </div>
@@ -51,7 +52,7 @@
   </div>
 </div>
 
-<p class=" text-muted mb-4">ATTENDEES</p>
+<p class=" text-light mb-4">ATTENDEES</p>
 
 <% if @event.attendees.empty? %>
 <div class="list-group">
