@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 class CreateInvite < ActiveRecord::Migration[6.1]
   def change

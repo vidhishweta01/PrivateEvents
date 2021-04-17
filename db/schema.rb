@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +9,7 @@
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
-
+# rubocop:disable Metrics/BlockLength
 ActiveRecord::Schema.define(version: 20_210_415_115_919) do
   create_table 'events', force: :cascade do |t|
     t.string 'title'
@@ -50,3 +48,4 @@ ActiveRecord::Schema.define(version: 20_210_415_115_919) do
   add_foreign_key 'invites', 'events', column: 'attended_event_id'
   add_foreign_key 'invites', 'users', column: 'attendee_id'
 end
+# rubocop:enable Metrics/BlockLength
