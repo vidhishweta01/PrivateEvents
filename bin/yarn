@@ -16,4 +16,4 @@ Dir.chdir(APP_ROOT) do
     exit 1
   end
 end
-# rubocop:enable Layout/MultilineMethodCallIndentation:
+# rubocop:enable Layout/MultilineMethodCallIndentation
