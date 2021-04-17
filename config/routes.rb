@@ -1,4 +1,3 @@
-
 Rails.application.routes.draw do
   get '/user/:id', to: 'users#profile', as: :user
   resources :users, only: :index
