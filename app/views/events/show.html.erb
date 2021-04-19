@@ -1,0 +1,67 @@
+<% if @event.date_time < Time.now %>
+  <div class="alert alert-secondary" role="alert">Registration for this event is now closed</div>
+<% end %>
+
+<div class="row mb-4">
+  <div class="col">
+    <h1 class="text-light"><%= @event.title %></h1>
+  </div>
+  <div class="col text-right">
+    <% if current_user == @event.creator %>
+      <%= link_to 'Edit', edit_event_path, class: "btn btn-outline-primary text-light" %>
+      <%= link_to 'Delete', event_path, method: :delete, class: "btn btn-outline-primary text-light",
+                            data: { confirm: "Delete this event?"} %>
+    <% elsif @event.attendees.include?(current_user) %>
+      <%= link_to 'Cancel Invite', cancel_invite_event_path, class: "btn btn-outline-primary text-light" %>
+    <% else %>
+      <%= link_to 'Invite', invite_event_path, class: "btn btn-primary text-light" unless @event.date_time < Time.now %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row mb-4">
+  <div class="col">
+    <div class="card">
+      <div class="row no-gutters">
+
+        <div class="col-md-8">
+          <div class="card-body">
+
+            <p class="card-text text-Dark ml-3"> <%= @event.description %> </p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card-body">
+            <p class="text-muted">
+              <i class="far fa-user-circle text-dark fa-lg mr-1"></i>
+                Created by <%= link_to @event.creator.name, user_path(@event.creator) %>
+            </p>
+            <p class="text-muted">
+              <i class="glyphicon glyphicon-calendar"></i>
+              <%= @event.date_time.strftime("%B %-d, %Y at %l:%M %p") %>
+            </p>
+            <p class="text-muted">
+            <i class="fas fa-map-marker-alt"></i>
+              <%= @event.location %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p class=" text-light mb-4">ATTENDEES</p>
+
+<% if @event.attendees.empty? %>
+<div class="list-group">
+  <li class="list-group-item text-muted">This event has no attendees yet</li>
+</div>
+<% else %>
+  <div class="list-group">
+    <% @event.attendees.each do |attendee| %>
+    <li class="list-group-item"> <%= attendee.name %> </li>
+    <% end %>
+  </div>
+<% end %>
