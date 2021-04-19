@@ -67,6 +67,7 @@ class EventsController < ApplicationController
   def past
     @events_past = Event.past.all
   end
+  
   def future
     @event_future = Event.future.all
   end
