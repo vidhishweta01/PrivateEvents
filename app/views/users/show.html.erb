@@ -12,7 +12,7 @@
   <div class="col-md mb-4">
     <p class="text-light"> <%= pluralize(@user.attended_events.count, 'event').upcase %> ATTENDED</p>
     <div class="list-group mt-3">
-        <% @user.attended_events.each do |event| %>
+        <% attended_events.each do |event| %>
           <%= link_to event.title, event_path(event), class: "list-group-item list-group-item-action" %>
         <% end %>
     </div>

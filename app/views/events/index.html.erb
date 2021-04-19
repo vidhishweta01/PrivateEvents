@@ -8,7 +8,7 @@
 </div>
 
 <div class="row mb-5">
-  <% Event.future.each do |event| %>
+  <% @event_future.each do |event| %>
   <div class="col-md-4 mb-4">
       <div class="card">
         <div class="card-body">
@@ -24,7 +24,7 @@
 
 <p class="text-light font-weight-bolder">PAST EVENTS</p>
 <div class="row">
-  <% Event.past.each do |event| %>
+  <% @events_past.each do |event| %>
   <div class="col-md-3 mb-4">
       <div class="card">
         <div class="card-body">

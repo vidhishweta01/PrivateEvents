@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get '/user/:id', to: 'users#profile', as: :user
+  get '/user/:id', to: 'users#show', as: :user
   resources :users, only: :index
   root 'events#index'
   resources :events do
