@@ -1,0 +1,39 @@
+<div class="row mb-4">
+  <div class="col">
+    <h1 class="text-light">Upcoming Events</h1>
+  </div>
+  <div class="col">
+    <%= link_to 'Create Event', new_event_path, class: "btn btn-danger text-light float-right" %>
+  </div>
+</div>
+
+<div class="row mb-5">
+  <% @event_future.each do |event| %>
+  <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title"><%= event.title.titleize %></h4>
+          <p class="small text-muted"><%= event.date_time.strftime("%B %-d, %Y") %></p>
+          <p class="card-text"><%= event.description.truncate(100) %></p>
+          <%= link_to 'Learn More', event_path(event), class: "btn text-light btn-block btn-danger" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<p class="text-light font-weight-bolder">PAST EVENTS</p>
+<div class="row">
+  <% @events_past.each do |event| %>
+  <div class="col-md-3 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><%= event.title.titleize %></h5>
+          <p class="small text-muted"><%= event.date_time.strftime("%B %-d, %Y") %></p>
+          <p class="card-text"><%= event.description.truncate(50) %></p>
+          <%= link_to 'Learn More', event_path(event), class: "btn btn-outline-primary btn-block" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
